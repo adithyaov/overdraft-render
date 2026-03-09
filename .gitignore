@@ -1,0 +1,52 @@
+# Dune build directory
+_build/
+
+# Dune cache
+.dune/
+
+# OCaml compiled files
+*.cmo
+*.cmi
+*.cmx
+*.cmxs
+*.o
+*.a
+*.annot
+*.cmt
+*.cmti
+
+# Bytecode / native executables
+*.byte
+*.native
+*.exe
+
+# Findlib / opam artifacts
+*.install
+
+# Local opam switch
+_opam/
+
+# Logs
+*.log
+
+# Coverage
+bisect*.out
+bisect*.coverage
+
+# Merlin / OCaml LSP
+.merlin
+
+# Editor files
+*~
+.#*
+\#*\#
+.DS_Store
+
+# Emacs
+.dir-locals.el
+
+# VSCode
+.vscode/
+
+# Vim
+*.swp
