@@ -4,23 +4,13 @@
 
 (generate_opam_files true)
 
-(source
- (github username/reponame))
+(source (github adithyaov/overdraft))
 
-(authors "Author Name <author@example.com>")
+(authors "Adithya <adi.obilisetty@gmail.com>")
 
-(maintainers "Maintainer Name <maintainer@example.com>")
-
-(license LICENSE)
-
-(documentation https://url/to/documentation)
+(license BSD-3-Clause)
 
 (package
  (name overdraft)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml)
- (tags
-  ("add topics" "to describe" your project)))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
+ (synopsis "A simple overdraft projection system")
+ (depends ocaml))

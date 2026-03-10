@@ -1,2 +1,3 @@
 (library
- (name overdraft))
+ (name overdraft)
+ (libraries unix))
