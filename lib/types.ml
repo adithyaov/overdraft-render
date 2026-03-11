@@ -6,7 +6,7 @@
 type date = {
   year : int;
   month : int;
-}
+} [@@deriving show]
 
 (* NOTE: Is there a way to define type signatures in the .ml file? *)
 let next_date (x : date) : date =
@@ -28,21 +28,23 @@ let current_date () : date =
 module StringMap = Map.Make(String)
 
 type principal_payment = {
-  rate : float;
-  principal : float;
+  rate : int;
+  principal : int;
   date: date;
-}
+} [@@deriving show]
 
 type interest_payment = {
-  amount : float;
+  amount : int;
   date: date;
-}
+} [@@deriving show]
 
-type borrower = string
+type borrower = string [@@deriving show]
 
 type borrower_details = {
   principal_payments : principal_payment list;
   interest_payments : interest_payment list;
-}
+} [@@deriving show]
 
 type database = borrower_details StringMap.t
+
+type database_as_list = (borrower * borrower_details) list [@@deriving show]
