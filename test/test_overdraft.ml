@@ -22,7 +22,7 @@ let sample = {|
 |       Date | Amount   | Rate | Comments |
 |------------+----------+------+----------|
 | 2026-03-02 | 5,00,000 |   10 |          |
-| 2026-03-04 | -10,000  |   12 |          |
+| 2026-03-04 | -10,000  |   10 |          |
 
 #+NAME: interest
 |       Date | Amount | Comments |
@@ -32,32 +32,43 @@ let sample = {|
 
 let expected =
   [("Alice",
-  { principal_payments =
-    [{ rate = 10; principal = 3500000;
-       date = { year = 2026; month = 3 } };
-      { rate = 12; principal = 3250000;
-        date = { year = 2026; month = 3 } };
-      { rate = 12; principal = 500000;
-        date = { year = 2026; month = 3 } }
-      ];
-    interest_payments =
-    [{ amount = 0; date = { year = 2026; month = 3 } }] });
-  ("Bob",
-   { principal_payments =
-     [{ rate = 10; principal = 500000;
-        date = { year = 2026; month = 3 } };
-       { rate = 12; principal = -10000;
-         date = { year = 2026; month = 3 } }
-       ];
-     interest_payments =
-     [{ amount = 0; date = { year = 2026; month = 3 } }] })
+    {
+      unique_rates = [ 10; 12 ];
+      principal_payments =
+        [{ rate = 10; principal = 3500000;
+           date = { year = 2026; month = 3 } };
+         { rate = 12; principal = 3250000;
+           date = { year = 2026; month = 3 } };
+         { rate = 12; principal = 500000;
+           date = { year = 2026; month = 3 } }
+        ];
+      interest_payments =
+        [{ amount = 7500; date = { year = 2026; month = 3 } }]
+    }
+   );
+   ("Bob",
+    {
+      unique_rates = [ 10 ];
+      principal_payments =
+        [{ rate = 10; principal = 500000;
+           date = { year = 2026; month = 3 } };
+         { rate = 10; principal = -10000;
+           date = { year = 2026; month = 3 } }
+        ];
+      interest_payments =
+        [{ amount = 1500; date = { year = 2026; month = 3 } }]
+    }
+   )
   ]
 
 let () =
   let db = Parser.parse_string sample in
   let actual = StringMap.bindings db in
   if actual = expected then
-    print_endline "Success"
+    begin
+      Project.render_database db;
+      Project.render_database (Parser.parse_string sample1);
+    end
   else begin
       Printf.printf "Failure!\n\nExpectedD:\n%s\n\nActual:\n%s\n"
         (show_database_as_list expected)

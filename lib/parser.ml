@@ -80,8 +80,8 @@ module Parser = struct
 
   let interest_payment =
     (fun d a _ -> {
-        date = current_date ();
-        amount = 0;
+        date = d;
+        amount = a;
     })
     <$> (cell (around whitespace date))
     <*> (cell (around whitespace number))
@@ -111,6 +111,7 @@ module Parser = struct
   let borrower_details =
     (fun bn ppl ipl ->
       (bn, {
+         unique_rates = get_unique_rates ppl;
          principal_payments = ppl;
          interest_payments = ipl;
     }))

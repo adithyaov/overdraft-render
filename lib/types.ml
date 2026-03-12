@@ -33,6 +33,11 @@ type principal_payment = {
   date: date;
 } [@@deriving show, eq]
 
+let get_unique_rates (principal_payments : principal_payment list) =
+  principal_payments
+  |> List.map (fun p -> p.rate)
+  |> List.sort_uniq Int.compare
+
 type interest_payment = {
   amount : int;
   date: date;
@@ -41,6 +46,7 @@ type interest_payment = {
 type borrower = string [@@deriving show, eq]
 
 type borrower_details = {
+  unique_rates : int list;
   principal_payments : principal_payment list;
   interest_payments : interest_payment list;
 } [@@deriving show, eq]
