@@ -1,4 +1,4 @@
  (library
  (name overdraft)
- (preprocess (pps ppx_deriving.show))
+ (preprocess (pps ppx_deriving.show ppx_deriving.eq))
  (libraries unix angstrom))

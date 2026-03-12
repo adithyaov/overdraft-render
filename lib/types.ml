@@ -6,7 +6,7 @@
 type date = {
   year : int;
   month : int;
-} [@@deriving show]
+} [@@deriving show, eq]
 
 (* NOTE: Is there a way to define type signatures in the .ml file? *)
 let next_date (x : date) : date =
@@ -31,20 +31,20 @@ type principal_payment = {
   rate : int;
   principal : int;
   date: date;
-} [@@deriving show]
+} [@@deriving show, eq]
 
 type interest_payment = {
   amount : int;
   date: date;
-} [@@deriving show]
+} [@@deriving show, eq]
 
-type borrower = string [@@deriving show]
+type borrower = string [@@deriving show, eq]
 
 type borrower_details = {
   principal_payments : principal_payment list;
   interest_payments : interest_payment list;
-} [@@deriving show]
+} [@@deriving show, eq]
 
 type database = borrower_details StringMap.t
 
-type database_as_list = (borrower * borrower_details) list [@@deriving show]
+type database_as_list = (borrower * borrower_details) list [@@deriving show, eq]
