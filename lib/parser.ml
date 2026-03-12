@@ -142,5 +142,6 @@ end
    ideal. *)
 let read_file filepath = In_channel.with_open_bin filepath In_channel.input_all
 
-let parse_file filepath =
-  Parser.run Parser.database (read_file filepath)
+let parse_string = Parser.run Parser.database
+
+let parse_file filepath = parse_string (read_file filepath)
