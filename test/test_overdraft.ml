@@ -65,11 +65,9 @@ let () =
   let db = Parser.parse_string sample in
   let actual = StringMap.bindings db in
   if actual = expected then
+    Render.render_database db
+  else
     begin
-      Project.render_database db;
-      Project.render_database (Parser.parse_string sample1);
-    end
-  else begin
       Printf.printf "Failure!\n\nExpectedD:\n%s\n\nActual:\n%s\n"
         (show_database_as_list expected)
         (show_database_as_list actual);
