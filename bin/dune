@@ -1,4 +1,4 @@
 (executable
- (public_name overdraft)
+ (public_name overdraft-render)
  (name main)
- (libraries overdraft))
+ (libraries overdraft_render))
