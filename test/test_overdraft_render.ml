@@ -1,5 +1,5 @@
-open Overdraft
-open Overdraft.Types
+open Overdraft_render
+open Overdraft_render.Types
 
 let sample = {|
 * Alice
